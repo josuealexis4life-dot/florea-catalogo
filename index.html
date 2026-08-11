@@ -230,9 +230,23 @@
   }
   footer .foot-logo{font-family:'Playfair Display',serif; color:var(--gold-light); font-size:1.5rem; margin-bottom:8px;}
   footer .foot-tag{font-family:'Cormorant Garamond',serif; font-style:italic; color:rgba(228,199,122,0.8); margin-bottom:24px;}
-  footer .foot-links{display:flex; gap:22px; justify-content:center; flex-wrap:wrap; margin-bottom:24px; font-size:0.85rem;}
-  footer .foot-links a{text-decoration:none; opacity:0.85; transition:opacity .2s;}
-  footer .foot-links a:hover{opacity:1; color:var(--gold-light);}
+  footer .foot-links{display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-bottom:28px;}
+  footer .foot-links a{
+    display:flex; align-items:center; justify-content:center;
+    width:44px; height:44px;
+    border-radius:50%;
+    border:1px solid rgba(201,162,75,0.4);
+    text-decoration:none;
+    transition:all .25s ease;
+  }
+  footer .foot-links a svg{width:20px; height:20px; fill:var(--gold-light); transition:fill .25s ease;}
+  footer .foot-links a:hover{
+    background:var(--gold-light);
+    border-color:var(--gold-light);
+    transform:translateY(-3px);
+    box-shadow:0 8px 18px rgba(201,162,75,0.3);
+  }
+  footer .foot-links a:hover svg{fill:var(--navy);}
   footer .copyright{font-size:0.75rem; opacity:0.55; letter-spacing:0.04em;}
 
   /* ---------- Floating WhatsApp ---------- */
@@ -589,9 +603,21 @@
   <div class="foot-logo">FLORÉA</div>
   <div class="foot-tag">Elegancia que florece contigo</div>
   <div class="foot-links">
-    <a id="foot-whatsapp" href="#">WhatsApp</a>
-    <a id="foot-instagram" href="#" style="display:none;">Instagram</a>
-    <a id="foot-facebook" href="#" style="display:none;">Facebook</a>
+    <a id="foot-whatsapp" href="#" aria-label="WhatsApp">
+      <svg viewBox="0 0 32 32"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.703 4.607 1.912 6.47L4 29l7.72-1.87A11.94 11.94 0 0 0 16 27c6.628 0 12-5.373 12-12S22.629 3 16.001 3zm0 21.6a9.55 9.55 0 0 1-4.87-1.33l-.35-.207-4.59 1.11 1.13-4.47-.23-.36A9.55 9.55 0 1 1 25.55 15c0 5.303-4.297 9.6-9.549 9.6zm5.24-7.16c-.286-.143-1.69-.833-1.953-.928-.262-.096-.453-.143-.644.143-.19.286-.738.928-.905 1.12-.167.19-.333.214-.62.072-.286-.143-1.207-.445-2.3-1.42-.85-.758-1.424-1.694-1.591-1.98-.167-.286-.018-.44.126-.583.129-.128.286-.334.43-.5.143-.167.19-.286.286-.477.095-.19.048-.358-.024-.5-.072-.143-.644-1.553-.883-2.128-.233-.56-.47-.484-.644-.493l-.548-.01c-.19 0-.5.072-.762.358-.262.286-1 1.977-1.036 4.79.238 2.386 1.037 4.766 3.09 6.09.286.184 5.056 2.905 6.212 2.68 1.157-.226 1.71-.98 1.953-1.19.243-.21.286-.5.19-.643z"/></svg>
+    </a>
+    <a id="foot-instagram" href="https://www.instagram.com/florea.az/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm0 9.891a3.891 3.891 0 1 1 0-7.782 3.891 3.891 0 0 1 0 7.782zm7.594-10.126a1.44 1.44 0 1 1-2.881.001 1.44 1.44 0 0 1 2.881-.001z"/></svg>
+    </a>
+    <a id="foot-facebook" href="https://www.facebook.com/profile.php?id=61590470292744" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+    </a>
+    <a id="foot-tiktok" href="https://www.tiktok.com/@florea.az" target="_blank" rel="noopener" aria-label="TikTok">
+      <svg viewBox="0 0 24 24"><path d="M16.6 5.82c-.9-.95-1.4-2.16-1.4-3.42h-3.28v13.44c0 1.62-1.32 2.94-2.94 2.94s-2.94-1.32-2.94-2.94 1.32-2.94 2.94-2.94c.3 0 .59.05.86.13V9.68a6.3 6.3 0 0 0-.86-.06 6.24 6.24 0 1 0 6.24 6.24V8.36a9.15 9.15 0 0 0 5.34 1.71V6.79c-1.44 0-2.77-.46-3.86-1.24-.04.09-.1.18-.1.27z"/></svg>
+    </a>
+    <a id="foot-pinterest" href="https://www.pinterest.com/floreaaz" target="_blank" rel="noopener" aria-label="Pinterest">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.237 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.182-.78 1.172-4.97 1.172-4.97s-.299-.6-.299-1.486c0-1.39.806-2.428 1.809-2.428.853 0 1.265.64 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.807 1.48 1.807 1.777 0 3.144-1.874 3.144-4.579 0-2.394-1.72-4.068-4.176-4.068-2.845 0-4.515 2.135-4.515 4.34 0 .859.331 1.781.744 2.281a.3.3 0 0 1 .069.288c-.076.317-.245.995-.278 1.134-.044.183-.145.222-.334.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.472 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.526-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.243 2.622.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+    </a>
   </div>
   <div class="copyright">© 2026 Floréa · Catálogo digital</div>
 </footer>

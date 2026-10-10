@@ -170,7 +170,7 @@
   .card .img-wrap{
     aspect-ratio:4/5; overflow:hidden; background:var(--blush); position:relative;
   }
-  .card .img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+  .card .img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease; cursor:pointer;}
   .card:hover .img-wrap img{transform:scale(1.05);}
   .badge{
     position:absolute; top:12px; left:12px;
@@ -303,10 +303,40 @@
   .whatsapp-float:hover{transform:scale(1.08);}
   .whatsapp-float svg{width:28px; height:28px;}
 
+  /* ---------- Lightbox (visor de fotos de producto) ---------- */
+  .lightbox{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(8,17,31,0.92);
+    display:none; align-items:center; justify-content:center;
+    padding:50px 20px;
+  }
+  .lightbox.active{display:flex;}
+  .lightbox img{
+    display:block;
+    max-width:90vw; max-height:85vh;
+    object-fit:contain;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+  .lightbox-close{
+    position:absolute; top:20px; right:24px;
+    width:44px; height:44px; border-radius:50%;
+    background:rgba(250,246,239,0.08);
+    border:1px solid rgba(201,162,75,0.5);
+    color:var(--gold-light);
+    font-family:'Jost',sans-serif; font-size:1.5rem; line-height:1;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .lightbox-close:hover{background:var(--gold-light); color:var(--navy); border-color:var(--gold-light);}
+
   @media (max-width:640px){
     header.hero{padding:48px 18px 44px;}
     .category-section{padding:40px 0 10px;}
     .grid{gap:18px;}
+    .lightbox{padding:20px 14px;}
+    .lightbox img{max-width:94vw; max-height:80vh;}
+    .lightbox-close{top:12px; right:12px; width:38px; height:38px; font-size:1.2rem;}
   }
 
   [id]{scroll-margin-top:76px;}
@@ -853,6 +883,11 @@
   <svg viewBox="0 0 32 32" fill="white"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.703 4.607 1.912 6.47L4 29l7.72-1.87A11.94 11.94 0 0 0 16 27c6.628 0 12-5.373 12-12S22.629 3 16.001 3zm0 21.6a9.55 9.55 0 0 1-4.87-1.33l-.35-.207-4.59 1.11 1.13-4.47-.23-.36A9.55 9.55 0 1 1 25.55 15c0 5.303-4.297 9.6-9.549 9.6zm5.24-7.16c-.286-.143-1.69-.833-1.953-.928-.262-.096-.453-.143-.644.143-.19.286-.738.928-.905 1.12-.167.19-.333.214-.62.072-.286-.143-1.207-.445-2.3-1.42-.85-.758-1.424-1.694-1.591-1.98-.167-.286-.018-.44.126-.583.129-.128.286-.334.43-.5.143-.167.19-.286.286-.477.095-.19.048-.358-.024-.5-.072-.143-.644-1.553-.883-2.128-.233-.56-.47-.484-.644-.493l-.548-.01c-.19 0-.5.072-.762.358-.262.286-1 1.977-1.036 4.79.238 2.386 1.037 4.766 3.09 6.09.286.184 5.056 2.905 6.212 2.68 1.157-.226 1.71-.98 1.953-1.19.243-.21.286-.5.19-.643z"/></svg>
 </a>
 
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
 <script>
   const WHATSAPP_NUMBER = "16029002348"; // Floréa WhatsApp
 
@@ -896,6 +931,33 @@
     });
   }, {rootMargin:"-40% 0px -50% 0px", threshold:0});
   sections.forEach(s=>observer.observe(s));
+
+  // Lightbox: visor ampliado de fotos de producto
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  function openLightbox(img){
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('active');
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    lightboxImg.src = "";
+  }
+
+  document.querySelectorAll('.card .img-wrap img').forEach(img=>{
+    img.addEventListener('click', ()=> openLightbox(img));
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e)=>{
+    if(e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+  });
 </script>
 
 </body>
